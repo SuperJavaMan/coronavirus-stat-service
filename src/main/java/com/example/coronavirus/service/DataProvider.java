@@ -30,8 +30,7 @@ public class DataProvider {
     }
 
     public List<DailyStatistic> getWorldStatByDate(LocalDate date) throws NoDataException {
-        List<DailyStatistic> dailyStatisticList = null;
-        dailyStatisticList = repository.findAllByDate(date);
+        List<DailyStatistic> dailyStatisticList = repository.findAllByDate(date);
         if (dailyStatisticList == null && date.isEqual(LocalDate.now())) {
             try {
                 dailyStatisticList = foreignDataSource.getCurrentDayWorldStat();
@@ -44,6 +43,9 @@ public class DataProvider {
     }
 
     public List<DailyStatistic> getWorldStatFromToDate(LocalDate from, LocalDate to) throws NoDataException {
+        if (from.isAfter(to) || to.isAfter(LocalDate.now())) {
+            throw new NoDataException("Invalid input or date is after today");
+        }
         List<DailyStatistic> dailyStatisticList = repository.findAllByDateIsBetween(from, to);
         if (dailyStatisticList == null || dailyStatisticList.isEmpty())
             throw new NoDataException("No data No data available for date from " + from + " to " + to);

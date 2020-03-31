@@ -21,4 +21,5 @@ public interface DailyStatRepository extends JpaRepository<DailyStatistic, Long>
     DailyStatistic findByDateAndCountry(LocalDate date, Country country);
     List<DailyStatistic> findAllByDateIsBetween(LocalDate from, LocalDate to);
     List<DailyStatistic> findAllByCountryAndDateBetween(Country country, LocalDate from, LocalDate to);
+
 }
