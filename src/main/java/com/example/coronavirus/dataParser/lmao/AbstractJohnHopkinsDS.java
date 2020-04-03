@@ -1,4 +1,4 @@
-package com.example.coronavirus.dataParser.johnHopkins;
+package com.example.coronavirus.dataParser.lmao;
 
 import com.example.coronavirus.dataParser.ForeignDataSource;
 import com.example.coronavirus.dataParser.model.johnHopkins.JohnHopkinsDto;

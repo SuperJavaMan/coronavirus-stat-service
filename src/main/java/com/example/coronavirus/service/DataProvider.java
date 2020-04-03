@@ -5,6 +5,7 @@ import com.example.coronavirus.dataParser.exception.ResourceNotAvailableExceptio
 import com.example.coronavirus.exception.NoDataException;
 import com.example.coronavirus.model.Country;
 import com.example.coronavirus.model.DailyStatistic;
+import com.example.coronavirus.repository.CountryRepository;
 import com.example.coronavirus.repository.DailyStatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class DataProvider {
 
     private final ForeignDataSource foreignDataSource;
     private final DailyStatRepository repository;
+    @Autowired
+    private CountryRepository countryRepository;
 
     @Autowired
     public DataProvider(ForeignDataSource foreignDataSource, DailyStatRepository repository) {
@@ -52,7 +55,8 @@ public class DataProvider {
         return dailyStatisticList;
     }
 
-    public DailyStatistic getCountryStatByDate(Country country, LocalDate date) throws NoDataException {
+    public DailyStatistic getCountryStatByDate(Long countryId, LocalDate date) throws NoDataException {
+        Country country = countryRepository.findById(countryId).orElseThrow(NoDataException::new);
         DailyStatistic dailyStatistic = repository.findByDateAndCountry(date, country);
         if (dailyStatistic == null) {
             try {
@@ -69,16 +73,18 @@ public class DataProvider {
         return dailyStatistic;
     }
 
-    public List<DailyStatistic> getCountryStatFromToDate(Country country,
+    public List<DailyStatistic> getCountryStatFromToDate(Long countryId,
                                                          LocalDate from,
                                                          LocalDate to) throws NoDataException {
+        Country country = countryRepository.findById(countryId).orElseThrow(NoDataException::new);
         List<DailyStatistic> dailyStatisticList = repository.findAllByCountryAndDateBetween(country, from, to);
         if (dailyStatisticList == null || dailyStatisticList.isEmpty())
             throw new NoDataException("No data available for " + country.getName() + " from " + from + " to" + to);
         return dailyStatisticList;
     }
 
-    public List<DailyStatistic> getAllCountryStat(Country country) throws NoDataException {
+    public List<DailyStatistic> getAllCountryStat(Long countryId) throws NoDataException {
+        Country country = countryRepository.findById(countryId).orElseThrow(NoDataException::new);
         List<DailyStatistic> dailyStatisticList = repository.findAllByCountry(country);
         if (dailyStatisticList == null || dailyStatisticList.isEmpty())
             throw new NoDataException("No data available for " + country.getName());

@@ -1,7 +1,7 @@
 package com.example.coronavirus.dataParser;
 
 import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
-import com.example.coronavirus.dataParser.johnHopkins.JohnHopkinsApiDS;
+import com.example.coronavirus.dataParser.lmao.JohnHopkinsApiDS;
 import com.example.coronavirus.dataParser.lmao.LmaoApiDS;
 import com.example.coronavirus.dataParser.lmao.LmaoJsonDS;
 import com.example.coronavirus.model.DailyStatistic;
@@ -48,6 +48,6 @@ class ForeignDSProxyTest {
         List<DailyStatistic> dailyStatisticList = dataSource.getStatsByCountry(country);
 
         assertNotNull(dailyStatisticList);
-        assertEquals(country, dailyStatisticList.get(0).getCountry().getName());
+        assertEquals(country, dailyStatisticList.get(0).getCountry().getName().toLowerCase());
     }
 }

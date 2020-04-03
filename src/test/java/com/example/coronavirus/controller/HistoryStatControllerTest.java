@@ -1,3 +1,7 @@
+package com.example.coronavirus.controller;
+
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -7,4 +11,23 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class HistoryStatControllerTest {
 
+    @Test
+    void getWorldStatByDate() {
+    }
+
+    @Test
+    void getWorldStatFromToDate() {
+    }
+
+    @Test
+    void getCountryStatByDate() {
+    }
+
+    @Test
+    void getCountryStatFromToDate() {
+    }
+
+    @Test
+    void getAllCountryStat() {
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.coronavirus.dataParser.johnHopkins;
+package com.example.coronavirus.dataParser.lmao;
 
 import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
 import com.example.coronavirus.dataParser.model.johnHopkins.JohnHopkinsDto;
@@ -10,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,8 @@ public class JohnHopkinsApiDS extends AbstractJohnHopkinsDS {
     public List<DailyStatistic> getCurrentDayWorldStat() throws ResourceNotAvailableException {
         List<JohnHopkinsDto> johnHopkinsDtoList = new ArrayList<>();
         try {
-            johnHopkinsDtoList = Arrays.asList(new ObjectMapper().readValue(doRequest(URL).getBody(), JohnHopkinsDto[].class));
+            johnHopkinsDtoList = Arrays.asList(new ObjectMapper().readValue(doRequest(URL).getBody(),
+                                                                            JohnHopkinsDto[].class));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -53,7 +55,7 @@ public class JohnHopkinsApiDS extends AbstractJohnHopkinsDS {
     private ResponseEntity<String> doRequest(String url) throws ResourceNotAvailableException {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
         ResponseEntity<String> responseEntity;

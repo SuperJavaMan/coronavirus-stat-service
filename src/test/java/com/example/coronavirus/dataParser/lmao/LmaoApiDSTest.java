@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +24,6 @@ class LmaoApiDSTest {
         List<DailyStatistic> dailyStatisticList = lmaoApiDS.getStatsByAllCountries();
 
         assertNotNull(dailyStatisticList);
-        assertEquals("Afghanistan", dailyStatisticList.get(0).getCountry().getName());
     }
 
     @Test

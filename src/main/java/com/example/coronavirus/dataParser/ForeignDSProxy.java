@@ -15,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class ForeignDSProxy implements ForeignDataSource {
+
     private ForeignDataSource[] foreignDataSources;
 
     @Override

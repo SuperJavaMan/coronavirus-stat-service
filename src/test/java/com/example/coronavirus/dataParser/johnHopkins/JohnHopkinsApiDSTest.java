@@ -1,6 +1,7 @@
 package com.example.coronavirus.dataParser.johnHopkins;
 
 import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
+import com.example.coronavirus.dataParser.lmao.JohnHopkinsApiDS;
 import com.example.coronavirus.model.DailyStatistic;
 import org.junit.jupiter.api.Test;
 

@@ -2,7 +2,7 @@ package com.example.coronavirus.dataParser.config;
 
 import com.example.coronavirus.dataParser.ForeignDSProxy;
 import com.example.coronavirus.dataParser.ForeignDataSource;
-import com.example.coronavirus.dataParser.johnHopkins.JohnHopkinsApiDS;
+import com.example.coronavirus.dataParser.lmao.JohnHopkinsApiDS;
 import com.example.coronavirus.dataParser.lmao.LmaoApiDS;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

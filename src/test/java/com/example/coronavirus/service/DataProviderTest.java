@@ -42,7 +42,6 @@ class DataProviderTest {
     @Test
     void getWorldStatByDateRetrieveDataFromRepository() throws ResourceNotAvailableException, NoDataException {
         List<DailyStatistic> worldStat = getTestDsList();
-
         when(repository.findAllByDate(any(LocalDate.class))).thenReturn(worldStat);
 
         List<DailyStatistic> resWorldStat = dataProvider.getWorldStatByDate(LocalDate.now());
@@ -121,7 +120,7 @@ class DataProviderTest {
         when(foreignDataSource.getStatsByCountry(countryName)).thenReturn(worldStat);
         when(repository.save(any(DailyStatistic.class))).thenReturn(null);
 
-        DailyStatistic resCountryStat = dataProvider.getCountryStatByDate(worldStat.get(0).getCountry(),
+        DailyStatistic resCountryStat = dataProvider.getCountryStatByDate(worldStat.get(0).getCountry().getId(),
                                                                             worldStat.get(0).getDate());
 
         assertNotNull(resCountryStat);
@@ -141,7 +140,7 @@ class DataProviderTest {
                                                         any(LocalDate.class),
                                                         any(LocalDate.class))).thenReturn(countryStat);
 
-        List<DailyStatistic> resCountryStat = dataProvider.getCountryStatFromToDate(countryStat.get(0).getCountry(),
+        List<DailyStatistic> resCountryStat = dataProvider.getCountryStatFromToDate(countryStat.get(0).getCountry().getId(),
                                                                                     LocalDate.now(), LocalDate.now());
 
         assertNotNull(resCountryStat);
@@ -158,7 +157,7 @@ class DataProviderTest {
 
         when(repository.findAllByCountry(country)).thenReturn(countryStat);
 
-        List<DailyStatistic> resCountryStat = dataProvider.getAllCountryStat(country);
+        List<DailyStatistic> resCountryStat = dataProvider.getAllCountryStat(country.getId());
 
         assertNotNull(resCountryStat);
         assertIterableEquals(countryStat, resCountryStat);

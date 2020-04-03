@@ -20,8 +20,9 @@ public class DailyStatistic {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(columnDefinition = "DATE")
     private LocalDate date;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "country_id")
     private Country country;
     private int cases;

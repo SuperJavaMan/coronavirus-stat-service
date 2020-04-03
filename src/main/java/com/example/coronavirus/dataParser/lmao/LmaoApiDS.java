@@ -35,8 +35,16 @@ public class LmaoApiDS extends AbstractLmaoDS {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return lmaoDtoList.stream().flatMap(lmaoDto -> convertToDailyStatistic(lmaoDto).stream())
-                .collect(Collectors.toList());
+        return new ArrayList<>(lmaoDtoList.stream().flatMap(lmaoDto -> convertToDailyStatistic(lmaoDto).stream())
+                .collect(Collectors.toMap(
+                        dailyStatistic -> dailyStatistic.getCountry().getName() + dailyStatistic.getDate(),
+                        dailyStatistic -> dailyStatistic,
+                        (oldDailyStat, newDailyStat) -> {
+                            oldDailyStat.setCases(newDailyStat.getCases() + oldDailyStat.getCases());
+                            oldDailyStat.setRecovered(newDailyStat.getRecovered() + oldDailyStat.getRecovered());
+                            oldDailyStat.setDeaths(newDailyStat.getDeaths() + oldDailyStat.getDeaths());
+                            return oldDailyStat;
+                    })).values());
     }
 
     @Override
