@@ -1,10 +1,8 @@
-package com.example.coronavirus.dataParser.lmao;
+package com.example.coronavirus.foreignDataSource.lmao;
 
-import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
+import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
 import com.example.coronavirus.model.DailyStatistic;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 

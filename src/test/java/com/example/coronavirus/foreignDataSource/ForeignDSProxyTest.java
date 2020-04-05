@@ -1,9 +1,9 @@
-package com.example.coronavirus.dataParser;
+package com.example.coronavirus.foreignDataSource;
 
-import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
-import com.example.coronavirus.dataParser.lmao.JohnHopkinsApiDS;
-import com.example.coronavirus.dataParser.lmao.LmaoApiDS;
-import com.example.coronavirus.dataParser.lmao.LmaoJsonDS;
+import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
+import com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS;
+import com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS;
+import com.example.coronavirus.foreignDataSource.lmao.LmaoJsonDS;
 import com.example.coronavirus.model.DailyStatistic;
 import org.junit.jupiter.api.Test;
 
