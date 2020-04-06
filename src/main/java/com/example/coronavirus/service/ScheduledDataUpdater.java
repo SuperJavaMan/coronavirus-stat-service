@@ -40,8 +40,8 @@ public class ScheduledDataUpdater {
     @EventListener(ApplicationReadyEvent.class)
     public void initDataBase() {
         log.debug("Start initDataBase()");
-        List<DailyStatistic> dailyStatisticList = repository.findAll();
-        if (dailyStatisticList == null || dailyStatisticList.size() < 1) {
+        long recordsCount= repository.count();
+        if (recordsCount < 1) {
             try {
                 List<DailyStatistic> freshDataList = foreignDataSource.getStatsByAllCountries();
                 repository.saveAll(freshDataList);

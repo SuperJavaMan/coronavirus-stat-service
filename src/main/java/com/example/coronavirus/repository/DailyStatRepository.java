@@ -4,7 +4,6 @@ import com.example.coronavirus.model.Country;
 import com.example.coronavirus.model.DailyStatistic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -23,5 +22,18 @@ public interface DailyStatRepository extends JpaRepository<DailyStatistic, Long>
     DailyStatistic findByDateAndCountry(LocalDate date, Country country);
     List<DailyStatistic> findAllByDateIsBetween(LocalDate from, LocalDate to);
     List<DailyStatistic> findAllByCountryAndDateBetween(Country country, LocalDate from, LocalDate to);
+
+    @Query(value = "select -1 as id, " +
+            "       current_date() as date,\n" +
+            "       null as country_id,\n" +
+            "       sum(cases) as cases,\n" +
+            "       sum(deaths) as deaths,\n" +
+            "       sum(recovered) as recovered\n" +
+            "from daily_statistic\n" +
+            "where date = current_date()",
+    nativeQuery = true)
+    DailyStatistic getGlobalStatistic();
+
+    long count();
 
 }

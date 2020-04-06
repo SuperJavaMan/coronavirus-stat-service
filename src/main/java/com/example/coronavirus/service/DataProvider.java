@@ -56,9 +56,7 @@ public class DataProvider {
 
     public List<DailyStatistic> getWorldStatFromToDate(LocalDate from, LocalDate to) throws NoDataException {
         log.debug("Input from = " + from + ", to = " + to);
-        if (from.isAfter(to) || to.isAfter(LocalDate.now())) {
-            throw new NoDataException("Invalid input");
-        }
+
         List<DailyStatistic> dailyStatisticList = repository.findAllByDateIsBetween(from, to);
         if (dailyStatisticList == null || dailyStatisticList.isEmpty()) {
             log.warn("No data available in repository for a range from = " + from + ", to = " + to);
@@ -68,9 +66,7 @@ public class DataProvider {
     }
 
     public DailyStatistic getCountryStatByDate(Long countryId, LocalDate date) throws NoDataException {
-        log.info("Test info");
         log.debug("Input countryId = " + countryId + ", date = " + date);
-        if (date.isAfter(LocalDate.now())) throw new NoDataException("Invalid input for date = " + date);
 
         Country country = countryRepository.findById(countryId).orElseThrow(NoDataException::new);
         DailyStatistic dailyStatistic = repository.findByDateAndCountry(date, country);
@@ -95,9 +91,7 @@ public class DataProvider {
                                                          LocalDate from,
                                                          LocalDate to) throws NoDataException {
         log.debug("Input countryId = " + countryId + ", from = " + from + ", to = " + to);
-        if (from.isAfter(to) || to.isAfter(LocalDate.now())) {
-            throw new NoDataException("Invalid input");
-        }
+
         Country country = countryRepository.findById(countryId).orElseThrow(NoDataException::new);
         List<DailyStatistic> dailyStatisticList = repository.findAllByCountryAndDateBetween(country, from, to);
 
@@ -110,6 +104,7 @@ public class DataProvider {
 
     public List<DailyStatistic> getAllCountryStat(Long countryId) throws NoDataException {
         log.debug("Input countryId = " + countryId);
+
         Country country = countryRepository.findById(countryId).orElseThrow(NoDataException::new);
         List<DailyStatistic> dailyStatisticList = repository.findAllByCountry(country);
         if (dailyStatisticList == null || dailyStatisticList.isEmpty()){
@@ -117,5 +112,21 @@ public class DataProvider {
             throw new NoDataException("No data available for " + country.getName());
         }
         return dailyStatisticList;
+    }
+
+    public DailyStatistic getGlobalStatistic() throws NoDataException {
+        DailyStatistic ds = repository.getGlobalStatistic();
+        if (ds == null) {
+            try {
+                List<DailyStatistic> dailyStatisticList = foreignDataSource.getCurrentDayWorldStat();
+                repository.saveAll(dailyStatisticList);
+                ds = repository.getGlobalStatistic();
+            } catch (ResourceNotAvailableException e) {
+                String msg = "No data in repository for a global statistic";
+                log.error(msg);
+                throw new NoDataException(msg);
+            }
+        }
+        return ds;
     }
 }
