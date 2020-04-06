@@ -1,4 +1,4 @@
-package com.example.coronavirus.dataParser.model.lmao;
+package com.example.coronavirus.foreignDataSource.model.lmao;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,6 +1,6 @@
-package com.example.coronavirus.dataParser;
+package com.example.coronavirus.foreignDataSource;
 
-import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
+import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
 import com.example.coronavirus.model.DailyStatistic;
 
 import java.util.List;

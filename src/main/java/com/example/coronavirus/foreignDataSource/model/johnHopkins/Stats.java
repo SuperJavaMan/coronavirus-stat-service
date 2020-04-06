@@ -1,4 +1,4 @@
-package com.example.coronavirus.dataParser.model.johnHopkins;
+package com.example.coronavirus.foreignDataSource.model.johnHopkins;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

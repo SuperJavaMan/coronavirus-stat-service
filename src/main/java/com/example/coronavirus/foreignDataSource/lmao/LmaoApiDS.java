@@ -1,16 +1,18 @@
-package com.example.coronavirus.dataParser.lmao;
+package com.example.coronavirus.foreignDataSource.lmao;
 
-import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
-import com.example.coronavirus.dataParser.model.lmao.LmaoDto;
+import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
+import com.example.coronavirus.foreignDataSource.model.lmao.LmaoDto;
 import com.example.coronavirus.model.DailyStatistic;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
  * on 29.03.2020
  * cpabox777@gmail.com
  */
+@Slf4j
 public class LmaoApiDS extends AbstractLmaoDS {
     private static final String URL = "https://corona.lmao.ninja/v2";
 
@@ -29,11 +32,12 @@ public class LmaoApiDS extends AbstractLmaoDS {
     @Override
     public List<DailyStatistic> getStatsByAllCountries() throws ResourceNotAvailableException {
         String json = doRequest(URL + "/historical").getBody();
-        List<LmaoDto> lmaoDtoList = new ArrayList<>();
+        List<LmaoDto> lmaoDtoList;
         try {
             lmaoDtoList = Arrays.asList(new ObjectMapper().readValue(json, LmaoDto[].class));
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            log.error("Error during processing Lmao response ", e);
+            throw new ResourceNotAvailableException(e);
         }
         return new ArrayList<>(lmaoDtoList.stream().flatMap(lmaoDto -> convertToDailyStatistic(lmaoDto).stream())
                 .collect(Collectors.toMap(
@@ -52,11 +56,11 @@ public class LmaoApiDS extends AbstractLmaoDS {
         String json = doRequest(URL + "/historical/" + country).getBody();
         LmaoDto lmaoDtoList = null;
         try {
-            lmaoDtoList = new ObjectMapper().readValue(json, LmaoDto.class);
+            lmaoDtoList = new ObjectMapper().readValue(Objects.requireNonNull(json), LmaoDto.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return convertToDailyStatistic(lmaoDtoList);
+        return convertToDailyStatistic(Objects.requireNonNull(lmaoDtoList));
     }
 
     private ResponseEntity<String> doRequest(String url) throws ResourceNotAvailableException {
@@ -69,6 +73,7 @@ public class LmaoApiDS extends AbstractLmaoDS {
         try {
             responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         } catch (Exception e) {
+            log.error("Resource Lmao URL=" + url + " is not available");
             throw new ResourceNotAvailableException("LmaoApiDS is not available", e);
         }
         return responseEntity;

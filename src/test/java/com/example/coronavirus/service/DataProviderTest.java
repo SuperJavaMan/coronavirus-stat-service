@@ -1,25 +1,22 @@
 package com.example.coronavirus.service;
 
-import com.example.coronavirus.dataParser.ForeignDataSource;
-import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
+import com.example.coronavirus.foreignDataSource.ForeignDataSource;
+import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
 import com.example.coronavirus.exception.NoDataException;
 import com.example.coronavirus.model.Country;
 import com.example.coronavirus.model.DailyStatistic;
+import com.example.coronavirus.repository.CountryRepository;
 import com.example.coronavirus.repository.DailyStatRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -35,78 +32,80 @@ class DataProviderTest {
     @InjectMocks
     DataProvider dataProvider;
     @Mock
-    DailyStatRepository repository;
+    DailyStatRepository dsRepository;
+    @Mock
+    CountryRepository countryRepository;
     @Mock
     ForeignDataSource foreignDataSource;
 
     @Test
     void getWorldStatByDateRetrieveDataFromRepository() throws ResourceNotAvailableException, NoDataException {
         List<DailyStatistic> worldStat = getTestDsList();
-        when(repository.findAllByDate(any(LocalDate.class))).thenReturn(worldStat);
+        when(dsRepository.findAllByDate(any(LocalDate.class))).thenReturn(worldStat);
 
         List<DailyStatistic> resWorldStat = dataProvider.getWorldStatByDate(LocalDate.now());
 
         assertNotNull(resWorldStat);
         assertIterableEquals(worldStat, resWorldStat);
 
-        verify(repository, times(1)).findAllByDate(any(LocalDate.class));
+        verify(dsRepository, times(1)).findAllByDate(any(LocalDate.class));
         verify(foreignDataSource, times(0)).getCurrentDayWorldStat();
-        verify(repository, times(0)).saveAll(anyIterable());
+        verify(dsRepository, times(0)).saveAll(anyIterable());
     }
 
     @Test
     void getWorldStatByDateRetrieveDataFromForeignDS() throws NoDataException, ResourceNotAvailableException {
         List<DailyStatistic> worldStat = getTestDsList();
 
-        when(repository.findAllByDate(any(LocalDate.class))).thenReturn(null);
+        when(dsRepository.findAllByDate(any(LocalDate.class))).thenReturn(null);
         when(foreignDataSource.getCurrentDayWorldStat()).thenReturn(worldStat);
-        when(repository.saveAll(anyIterable())).thenReturn(anyList());
+        when(dsRepository.saveAll(anyIterable())).thenReturn(anyList());
 
         List<DailyStatistic> resWorldStat = dataProvider.getWorldStatByDate(LocalDate.now());
 
         assertNotNull(resWorldStat);
         assertIterableEquals(worldStat, resWorldStat);
 
-        verify(repository, times(1)).findAllByDate(any(LocalDate.class));
+        verify(dsRepository, times(1)).findAllByDate(any(LocalDate.class));
         verify(foreignDataSource, times(1)).getCurrentDayWorldStat();
-        verify(repository, times(1)).saveAll(anyIterable());
+        verify(dsRepository, times(1)).saveAll(anyIterable());
     }
 
     @Test
     void getWorldStatByDateNoData() throws ResourceNotAvailableException {
-        when(repository.findAllByDate(any(LocalDate.class))).thenReturn(null);
+        when(dsRepository.findAllByDate(any(LocalDate.class))).thenReturn(null);
         when(foreignDataSource.getCurrentDayWorldStat()).thenThrow(ResourceNotAvailableException.class);
 
         assertThrows(NoDataException.class, () -> dataProvider.getWorldStatByDate(LocalDate.now()));
 
-        verify(repository, times(1)).findAllByDate(any(LocalDate.class));
+        verify(dsRepository, times(1)).findAllByDate(any(LocalDate.class));
         verify(foreignDataSource, times(1)).getCurrentDayWorldStat();
-        verify(repository, times(0)).saveAll(anyIterable());
+        verify(dsRepository, times(0)).saveAll(anyIterable());
     }
 
     @Test
     void getWorldStatFromToDateOK() throws NoDataException {
         List<DailyStatistic> worldStat = getTestDsList();
 
-        when(repository.findAllByDateIsBetween(any(LocalDate.class), any(LocalDate.class))).thenReturn(worldStat);
+        when(dsRepository.findAllByDateIsBetween(any(LocalDate.class), any(LocalDate.class))).thenReturn(worldStat);
 
         List<DailyStatistic> resWorldStat = dataProvider.getWorldStatFromToDate(LocalDate.now(), LocalDate.now());
 
         assertNotNull(resWorldStat);
         assertIterableEquals(worldStat, resWorldStat);
 
-        verify(repository, times(1))
+        verify(dsRepository, times(1))
                 .findAllByDateIsBetween(any(LocalDate.class), any(LocalDate.class));
     }
 
     @Test
     void getWorldStatFromToDateNoData() {
-        when(repository.findAllByDateIsBetween(any(LocalDate.class), any(LocalDate.class))).thenReturn(null);
+        when(dsRepository.findAllByDateIsBetween(any(LocalDate.class), any(LocalDate.class))).thenReturn(null);
 
         assertThrows(NoDataException.class,
                 () -> dataProvider.getWorldStatFromToDate(LocalDate.now(), LocalDate.now()));
 
-        verify(repository, times(1))
+        verify(dsRepository, times(1))
                 .findAllByDateIsBetween(any(LocalDate.class), any(LocalDate.class));
     }
 
@@ -115,10 +114,10 @@ class DataProviderTest {
         List<DailyStatistic> worldStat = getTestDsList();
         String countryName = worldStat.get(0).getCountry().getName();
 
-        when(repository.findByDateAndCountry(any(LocalDate.class), any(Country.class))).thenReturn(null);
-//        doReturn(null).when(repository).findByDateAndCountry(any(LocalDate.class), any(Country.class));
+        when(countryRepository.findById(anyLong())).thenReturn(Optional.ofNullable(worldStat.get(0).getCountry()));
+        when(dsRepository.findByDateAndCountry(any(LocalDate.class), any(Country.class))).thenReturn(null);
         when(foreignDataSource.getStatsByCountry(countryName)).thenReturn(worldStat);
-        when(repository.save(any(DailyStatistic.class))).thenReturn(null);
+        when(dsRepository.save(any(DailyStatistic.class))).thenReturn(null);
 
         DailyStatistic resCountryStat = dataProvider.getCountryStatByDate(worldStat.get(0).getCountry().getId(),
                                                                             worldStat.get(0).getDate());
@@ -126,17 +125,18 @@ class DataProviderTest {
         assertNotNull(resCountryStat);
         assertEquals(worldStat.get(0), resCountryStat);
 
-        verify(repository, times(1))
+        verify(dsRepository, times(1))
                 .findByDateAndCountry(any(LocalDate.class), any(Country.class));
         verify(foreignDataSource, times(1)).getStatsByCountry(countryName);
-        verify(repository, times(1)).save(any(DailyStatistic.class));
+        verify(dsRepository, times(1)).save(any(DailyStatistic.class));
     }
 
     @Test
     void getCountryStatFromToDate() throws NoDataException {
         List<DailyStatistic> countryStat = getTestDsList();
 
-        when(repository.findAllByCountryAndDateBetween(any(Country.class),
+        when(countryRepository.findById(anyLong())).thenReturn(Optional.ofNullable(countryStat.get(0).getCountry()));
+        when(dsRepository.findAllByCountryAndDateBetween(any(Country.class),
                                                         any(LocalDate.class),
                                                         any(LocalDate.class))).thenReturn(countryStat);
 
@@ -146,7 +146,7 @@ class DataProviderTest {
         assertNotNull(resCountryStat);
         assertIterableEquals(countryStat, resCountryStat);
 
-        verify(repository, times(1))
+        verify(dsRepository, times(1))
                 .findAllByCountryAndDateBetween(any(Country.class), any(LocalDate.class), any(LocalDate.class));
     }
 
@@ -155,14 +155,15 @@ class DataProviderTest {
         List<DailyStatistic> countryStat = getTestDsList();
         Country country = countryStat.get(0).getCountry();
 
-        when(repository.findAllByCountry(country)).thenReturn(countryStat);
+        when(countryRepository.findById(anyLong())).thenReturn(Optional.ofNullable(country));
+        when(dsRepository.findAllByCountry(country)).thenReturn(countryStat);
 
         List<DailyStatistic> resCountryStat = dataProvider.getAllCountryStat(country.getId());
 
         assertNotNull(resCountryStat);
         assertIterableEquals(countryStat, resCountryStat);
 
-        verify(repository, times(1)).findAllByCountry(country);
+        verify(dsRepository, times(1)).findAllByCountry(country);
     }
 
     private List<DailyStatistic> getTestDsList() {

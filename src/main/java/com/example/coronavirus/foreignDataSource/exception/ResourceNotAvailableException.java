@@ -1,4 +1,4 @@
-package com.example.coronavirus.dataParser.exception;
+package com.example.coronavirus.foreignDataSource.exception;
 
 /**
  * @author Oleg Pavlyukov

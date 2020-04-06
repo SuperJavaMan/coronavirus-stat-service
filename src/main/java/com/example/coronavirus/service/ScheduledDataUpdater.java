@@ -1,12 +1,12 @@
 package com.example.coronavirus.service;
 
-import com.example.coronavirus.dataParser.ForeignDataSource;
-import com.example.coronavirus.dataParser.exception.ResourceNotAvailableException;
+import com.example.coronavirus.foreignDataSource.ForeignDataSource;
+import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
 import com.example.coronavirus.exception.DataInitException;
-import com.example.coronavirus.exception.NoDataException;
 import com.example.coronavirus.model.DailyStatistic;
 import com.example.coronavirus.repository.DailyStatRepository;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ import java.util.List;
  */
 @Component
 @Data
+@Slf4j
 public class ScheduledDataUpdater {
 
     private DailyStatRepository repository;
@@ -37,12 +39,14 @@ public class ScheduledDataUpdater {
 
     @EventListener(ApplicationReadyEvent.class)
     public void initDataBase() {
-        List<DailyStatistic> dailyStatisticList = repository.findAll();
-        if (dailyStatisticList == null || dailyStatisticList.size() < 1) {
+        log.debug("Start initDataBase()");
+        long recordsCount= repository.count();
+        if (recordsCount < 1) {
             try {
                 List<DailyStatistic> freshDataList = foreignDataSource.getStatsByAllCountries();
                 repository.saveAll(freshDataList);
             } catch (ResourceNotAvailableException e) {
+                log.error("Fatal error during init db. No data available.", e);
                 throw new DataInitException("Fatal error during init db. No data available.", e);
             }
         }
@@ -50,10 +54,15 @@ public class ScheduledDataUpdater {
 
     @Scheduled(fixedRateString = "${app.schedule.rate}")
     public void refreshCurrentDayData() {
+        log.info("Refreshing data at " + LocalDateTime.now());
         List<DailyStatistic> updateList = new ArrayList<>();
         try {
             List<DailyStatistic> repositoryDsList = repository.findAllByDate(LocalDate.now());
             List<DailyStatistic> foreignDsList = foreignDataSource.getCurrentDayWorldStat();
+            if (repositoryDsList == null || repositoryDsList.isEmpty()) {
+                repository.saveAll(foreignDsList);
+                return;
+            }
             for (int i = 0; i < foreignDsList.size() - 1; i++) {
                 for (int j = 0; j < repositoryDsList.size() - 1; j++) {
                     DailyStatistic fds = foreignDsList.get(i);
@@ -74,6 +83,7 @@ public class ScheduledDataUpdater {
             }
             repository.saveAll(updateList);
         } catch (ResourceNotAvailableException e) {
+            log.error("Refresh data error", e);
             throw new DataInitException("Refresh data error", e);
         }
     }
