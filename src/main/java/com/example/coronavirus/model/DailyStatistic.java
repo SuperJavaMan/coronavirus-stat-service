@@ -19,6 +19,8 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table( name = "daily_statistic",
+        uniqueConstraints = { @UniqueConstraint( columnNames = { "date", "country_id" } ) } )
 public class DailyStatistic {
     @Id
     @GeneratedValue

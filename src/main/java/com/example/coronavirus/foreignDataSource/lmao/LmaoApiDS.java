@@ -31,7 +31,7 @@ public class LmaoApiDS extends AbstractLmaoDS {
 
     @Override
     public List<DailyStatistic> getStatsByAllCountries() throws ResourceNotAvailableException {
-        String json = doRequest(URL + "/historical").getBody();
+        String json = doRequest(URL + "/historical?lastdays=0").getBody();
         List<LmaoDto> lmaoDtoList;
         try {
             lmaoDtoList = Arrays.asList(new ObjectMapper().readValue(json, LmaoDto[].class));

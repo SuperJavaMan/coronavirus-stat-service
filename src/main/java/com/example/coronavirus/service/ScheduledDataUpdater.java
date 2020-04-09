@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,7 @@ import java.util.List;
 @Component
 @Data
 @Slf4j
+@EnableScheduling
 public class ScheduledDataUpdater {
 
     private DailyStatRepository repository;
@@ -57,9 +59,12 @@ public class ScheduledDataUpdater {
         log.info("Refreshing data at " + LocalDateTime.now());
         List<DailyStatistic> updateList = new ArrayList<>();
         try {
+            if (repository.count() < 1) return;
+
             List<DailyStatistic> repositoryDsList = repository.findAllByDate(LocalDate.now());
             List<DailyStatistic> foreignDsList = foreignDataSource.getCurrentDayWorldStat();
             if (repositoryDsList == null || repositoryDsList.isEmpty()) {
+                System.out.println("DB list empty");
                 repository.saveAll(foreignDsList);
                 return;
             }
@@ -67,6 +72,7 @@ public class ScheduledDataUpdater {
                 for (int j = 0; j < repositoryDsList.size() - 1; j++) {
                     DailyStatistic fds = foreignDsList.get(i);
                     DailyStatistic rds = repositoryDsList.get(j);
+                    System.out.println(rds + " " + fds.toString());
                     if (fds.getCountry().getName().equals(rds.getCountry().getName())) {
                         if (fds.getDate().isEqual(rds.getDate())) {
                             if (fds.getCases() != rds.getCases()
@@ -81,7 +87,10 @@ public class ScheduledDataUpdater {
                     }
                 }
             }
-            repository.saveAll(updateList);
+            if (!updateList.isEmpty()) {
+                System.out.println("Update data");
+                repository.saveAll(updateList);
+            }
         } catch (ResourceNotAvailableException e) {
             log.error("Refresh data error", e);
             throw new DataInitException("Refresh data error", e);

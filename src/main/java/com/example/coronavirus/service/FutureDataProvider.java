@@ -1,16 +1,13 @@
 package com.example.coronavirus.service;
 
 import com.example.coronavirus.exception.NoDataException;
-import com.example.coronavirus.model.Country;
 import com.example.coronavirus.model.DailyStatistic;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * @author Oleg Pavlyukov
@@ -28,6 +25,7 @@ public class FutureDataProvider {
         this.dataProvider = dataProvider;
     }
 
+    @Deprecated
     public List<DailyStatistic> getForecastByPreviousDays(Long countryId, int daysCount) throws NoDataException {
         log.debug("Input countryId = " + countryId + ", daysCount = " + daysCount);
         List<DailyStatistic> templateList = dataProvider.getCountryStatFromToDate(countryId,
