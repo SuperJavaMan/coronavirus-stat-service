@@ -1,7 +1,7 @@
 package com.example.coronavirus.foreignDataSource.lmao;
 
 import com.example.coronavirus.foreignDataSource.ForeignDataSource;
-import com.example.coronavirus.foreignDataSource.model.lmao.LmaoDto;
+import com.example.coronavirus.foreignDataSource.lmao.model.lmao.LmaoDto;
 import com.example.coronavirus.model.Country;
 import com.example.coronavirus.model.DailyStatistic;
 

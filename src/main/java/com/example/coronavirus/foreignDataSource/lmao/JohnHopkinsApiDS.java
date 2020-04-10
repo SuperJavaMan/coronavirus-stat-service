@@ -1,7 +1,7 @@
 package com.example.coronavirus.foreignDataSource.lmao;
 
 import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
-import com.example.coronavirus.foreignDataSource.model.johnHopkins.JohnHopkinsDto;
+import com.example.coronavirus.foreignDataSource.lmao.model.johnHopkins.JohnHopkinsDto;
 import com.example.coronavirus.model.DailyStatistic;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
