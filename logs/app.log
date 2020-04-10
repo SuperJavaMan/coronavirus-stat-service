@@ -1513,3 +1513,26 @@ com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableExceptio
 2020-04-10 20:35:13,347 ERROR DataProvider getWorldStatByDate [main] Foreign DS and repository have no data for 2020-04-10
 com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: null
 2020-04-10 20:35:13,407 WARN DataProvider getWorldStatFromToDate [main] No data available in repository for a range from = 2020-04-10, to = 2020-04-10
+2020-04-10 20:48:24,604 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 9672 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-10 20:48:24,630 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-10 20:48:54,843 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@589dfa6f, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@43588265]
+2020-04-10 20:48:58,198 INFO ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Refreshing data at 2020-04-10T20:48:58.198
+2020-04-10 20:48:58,266 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 35.083 seconds (JVM running for 38.675)
+2020-04-10 20:48:59,148 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData(ScheduledDataUpdater.java:75) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
