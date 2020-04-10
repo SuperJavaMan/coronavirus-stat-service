@@ -18,6 +18,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Oleg Pavlyukov
@@ -46,8 +48,16 @@ public class ScheduledDataUpdater {
         if (recordsCount < 1) {
             try {
                 List<DailyStatistic> freshDataList = foreignDataSource.getStatsByAllCountries();
-                repository.saveAll(freshDataList);
-            } catch (ResourceNotAvailableException e) {
+                Map<String, List<DailyStatistic>> mapToSave = freshDataList.stream().collect(Collectors.groupingBy(
+                        key-> key.getCountry().getName()));
+                int count = 1;
+                for (List<DailyStatistic> dailyStatisticList : mapToSave.values()) {
+                    repository.saveAll(dailyStatisticList);
+                    Thread.sleep(10000);
+                    System.out.println("Country num: " + ++count + ". Time: " + LocalDateTime.now());
+                }
+//                repository.saveAll(freshDataList);
+            } catch (ResourceNotAvailableException | InterruptedException e) {
                 log.error("Fatal error during init db. No data available.", e);
                 throw new DataInitException("Fatal error during init db. No data available.", e);
             }
