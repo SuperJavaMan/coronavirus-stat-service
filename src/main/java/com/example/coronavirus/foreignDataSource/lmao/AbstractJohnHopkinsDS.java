@@ -24,6 +24,14 @@ public abstract class AbstractJohnHopkinsDS implements ForeignDataSource {
             country.setName("USA");
         } else if (countryDtoName.equalsIgnoreCase("United Kingdom")) {
             country.setName("UK");
+        } else if (countryDtoName.equalsIgnoreCase("Bosnia and Herzegovina")) {
+            country.setName("Bosnia");
+        } else if (countryDtoName.equalsIgnoreCase("Korea, South")) {
+            country.setName("S. Korea");
+        } else if (countryDtoName.equalsIgnoreCase("North Macedonia")) {
+            country.setName("Macedonia");
+        }else if (countryDtoName.equalsIgnoreCase("United Arab Emirates")) {
+            country.setName("UAE");
         } else {
             country.setName(countryDtoName);
         }

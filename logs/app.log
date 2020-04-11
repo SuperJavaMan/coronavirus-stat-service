@@ -1536,3 +1536,443 @@ com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableExceptio
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 18:24:57,213 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 8212 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 18:24:57,242 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 18:47:49,023 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 3824 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 18:47:49,054 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 18:47:57,945 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@70d3cdbf, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@72a7aa4f]
+2020-04-11 18:48:01,287 INFO ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Refreshing data at 2020-04-11T18:48:01.286
+2020-04-11 18:48:01,348 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.462 seconds (JVM running for 16.571)
+2020-04-11 18:48:02,347 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 18:49:20,067 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 9932 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 18:49:20,099 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 18:49:28,741 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@fe8aaeb, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@6b9697ae]
+2020-04-11 18:49:31,960 INFO ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Refreshing data at 2020-04-11T18:49:31.959
+2020-04-11 18:49:32,023 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.107 seconds (JVM running for 16.151)
+2020-04-11 18:49:32,369 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 18:49:34,002 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 18:49:34,069 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Laos
+2020-04-11 18:52:00,895 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 8132 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 18:52:00,920 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 18:52:09,992 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@2296127, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@5ce3409b]
+2020-04-11 18:52:13,131 INFO ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Refreshing data at 2020-04-11T18:52:13.131
+2020-04-11 18:52:13,214 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.526 seconds (JVM running for 17.268)
+2020-04-11 18:52:13,548 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 18:52:14,974 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 18:52:15,008 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Laos
+2020-04-11 18:52:15,847 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Tanzania
+2020-04-11 18:52:16,145 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> North Macedonia
+2020-04-11 18:52:17,112 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Moldova
+2020-04-11 18:52:17,289 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> United Arab Emirates
+2020-04-11 18:52:17,501 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Bosnia and Herzegovina
+2020-04-11 18:52:17,607 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Korea, South
+2020-04-11 18:52:17,724 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Libya
+2020-04-11 18:52:17,907 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Taiwan*
+2020-04-11 18:52:17,982 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Eswatini
+2020-04-11 18:52:18,200 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Yemen
+2020-04-11 18:52:19,046 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Syria
+2020-04-11 18:52:19,200 ERROR ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Country not found -> Congo (Kinshasa)
+2020-04-11 19:13:09,786 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 7220 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 19:13:09,818 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 19:13:18,459 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@781c2497, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@b75b890]
+2020-04-11 19:13:21,720 INFO ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Refreshing data at 2020-04-11T19:13:21.719
+2020-04-11 19:13:21,780 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.429 seconds (JVM running for 16.839)
+2020-04-11 19:13:22,802 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 19:15:55,091 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 1916 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 19:15:55,126 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 19:16:03,921 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@60dcf9ec, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@7606bd03]
+2020-04-11 19:16:07,074 INFO ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Refreshing data at 2020-04-11T19:16:07.073
+2020-04-11 19:16:07,130 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.43 seconds (JVM running for 17.63)
+2020-04-11 19:16:08,308 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 19:19:09,107 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 4812 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 19:19:09,135 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 19:19:18,638 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@77ea806f, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@71b26880]
+2020-04-11 19:19:21,785 INFO ScheduledDataUpdater refreshCurrentDayData [scheduling-1] Refreshing data at 2020-04-11T19:19:21.785
+2020-04-11 19:19:21,845 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 14.112 seconds (JVM running for 17.801)
+2020-04-11 19:19:23,171 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:07:59,706 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 10104 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:07:59,733 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:08:08,574 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@7ad889be, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@4c063cb9]
+2020-04-11 20:08:11,724 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:08:11.724
+2020-04-11 20:08:11,785 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.335 seconds (JVM running for 16.638)
+2020-04-11 20:08:12,034 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:08:14,412 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:08:14,436 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:11:06,813 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 8656 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:11:06,845 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:11:15,374 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@7b1a30e5, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@1de7f898]
+2020-04-11 20:11:18,936 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:11:18.936
+2020-04-11 20:11:19,002 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.49 seconds (JVM running for 16.401)
+2020-04-11 20:11:19,249 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:11:21,343 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:11:21,365 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:12:06,644 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 8284 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:12:06,677 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:12:15,721 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@1152900, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@2fba0dac]
+2020-04-11 20:12:18,913 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:12:18.912
+2020-04-11 20:12:18,983 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.449 seconds (JVM running for 16.722)
+2020-04-11 20:12:19,254 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:12:21,133 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:12:21,157 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:13:44,004 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 9800 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:13:44,054 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:13:52,857 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@49038f97, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@36211bbc]
+2020-04-11 20:13:56,101 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:13:56.101
+2020-04-11 20:13:56,162 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.234 seconds (JVM running for 15.943)
+2020-04-11 20:13:56,416 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:13:58,454 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:13:58,481 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:16:06,273 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 8648 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:16:06,305 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:16:16,851 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@3921135e, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@3a239dac]
+2020-04-11 20:16:21,044 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:16:21.044
+2020-04-11 20:16:21,121 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 15.878 seconds (JVM running for 25.441)
+2020-04-11 20:16:21,408 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:17:49,543 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:18:04,868 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:29:03,774 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 2040 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:29:03,823 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:29:12,600 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@10bf1ec9, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@33751d49]
+2020-04-11 20:29:15,532 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:29:15.532
+2020-04-11 20:29:15,603 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.222 seconds (JVM running for 17.132)
+2020-04-11 20:29:16,175 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:29:18,172 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:29:18,196 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:29:18,833 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Tanzania
+2020-04-11 20:29:19,659 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Moldova
+2020-04-11 20:29:19,834 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> US
+2020-04-11 20:29:19,988 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Libya
+2020-04-11 20:29:20,109 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Taiwan*
+2020-04-11 20:29:20,142 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Eswatini
+2020-04-11 20:29:20,303 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Yemen
+2020-04-11 20:29:20,844 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Syria
+2020-04-11 20:29:20,934 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Kinshasa)
+2020-04-11 20:32:22,497 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 7104 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:32:22,525 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:32:31,180 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@5a3cf824, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@7c2b6acb]
+2020-04-11 20:32:34,306 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:32:34.305
+2020-04-11 20:32:34,367 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.106 seconds (JVM running for 16.675)
+2020-04-11 20:32:34,605 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:32:36,505 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:32:36,533 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:32:37,218 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Tanzania
+2020-04-11 20:32:38,080 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Moldova
+2020-04-11 20:32:38,436 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Libya
+2020-04-11 20:32:38,556 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Taiwan*
+2020-04-11 20:32:38,598 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Eswatini
+2020-04-11 20:32:38,741 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Yemen
+2020-04-11 20:32:39,233 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Syria
+2020-04-11 20:32:39,305 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Kinshasa)
+2020-04-11 20:33:39,643 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 9748 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:33:39,673 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:33:48,499 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@ff0e6d4, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@70d3cdbf]
+2020-04-11 20:33:51,603 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:33:51.603
+2020-04-11 20:33:51,677 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 14.194 seconds (JVM running for 17.779)
+2020-04-11 20:33:51,936 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:33:53,837 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:33:53,867 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:33:55,933 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Taiwan*
+2020-04-11 20:33:55,974 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Eswatini
+2020-04-11 20:33:56,119 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Yemen
+2020-04-11 20:33:56,701 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Kinshasa)
+2020-04-11 20:36:31,435 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 12 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:36:31,460 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:36:40,782 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@19105a87, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@83b0d0f]
+2020-04-11 20:36:43,887 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:36:43.887
+2020-04-11 20:36:43,952 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.822 seconds (JVM running for 16.602)
+2020-04-11 20:36:44,197 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:36:45,596 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:36:45,634 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:36:46,446 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Tanzania
+2020-04-11 20:36:47,780 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Moldova
+2020-04-11 20:36:48,369 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Libya
+2020-04-11 20:36:48,545 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Taiwan*
+2020-04-11 20:36:48,593 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Eswatini
+2020-04-11 20:36:48,856 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Yemen
+2020-04-11 20:36:49,683 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Syria
+2020-04-11 20:36:49,824 ERROR ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Kinshasa)
+2020-04-11 20:38:40,783 INFO StartupInfoLogger logStarting [main] Starting CoronavirusApplication on Oleg-PC with PID 6080 (C:\Users\Oleg\IdeaProjects\coronavirus-service\target\classes started by Oleg in C:\Users\Oleg\IdeaProjects\coronavirus-service)
+2020-04-11 20:38:40,812 INFO SpringApplication logStartupProfileInfo [main] No active profile set, falling back to default profiles: default
+2020-04-11 20:38:49,788 INFO ForeignDataSourceConfig foreignDataSource [main] Active foreign data sources -> [com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS@4e4f4092, com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS@5d829ef0]
+2020-04-11 20:38:52,978 INFO ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Refreshing data at 2020-04-11T20:38:52.978
+2020-04-11 20:38:53,048 INFO StartupInfoLogger logStarted [main] Started CoronavirusApplication in 13.514 seconds (JVM running for 16.176)
+2020-04-11 20:38:53,299 WARN ForeignDSProxy getCurrentDayWorldStat [scheduling-1] DS not available
+com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException: Lmao api not supported
+	at com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS.getCurrentDayWorldStat(LmaoApiDS.java:29) ~[classes/:?]
+	at com.example.coronavirus.foreignDataSource.ForeignDSProxy.getCurrentDayWorldStat(ForeignDSProxy.java:30) [classes/:?]
+	at com.example.coronavirus.service.ScheduledDataUpdater.refreshCurrentDayData1(ScheduledDataUpdater.java:80) [classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_231]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_231]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_231]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_231]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) [spring-context-5.2.5.RELEASE.jar:5.2.5.RELEASE]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_231]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180) [?:1.8.0_231]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [?:1.8.0_231]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [?:1.8.0_231]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_231]
+2020-04-11 20:38:55,294 WARN ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Brazzaville)
+2020-04-11 20:38:55,319 WARN ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Laos
+2020-04-11 20:38:57,257 WARN ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Taiwan*
+2020-04-11 20:38:57,295 WARN ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Eswatini
+2020-04-11 20:38:57,433 WARN ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Yemen
+2020-04-11 20:38:57,997 WARN ScheduledDataUpdater refreshCurrentDayData1 [scheduling-1] Country not found -> Congo (Kinshasa)

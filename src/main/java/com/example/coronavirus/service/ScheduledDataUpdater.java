@@ -70,16 +70,17 @@ public class ScheduledDataUpdater {
     }
 
     @Scheduled(fixedRateString = "${app.schedule.rate}")
-    public void refreshCurrentDayData() {
+    private void refreshCurrentDayData1() {
         log.info("Refreshing data at " + LocalDateTime.now());
-        List<DailyStatistic> updateList = new ArrayList<>();
-        try {
-            if (dsRepository.count() < 1) return;
 
-            List<DailyStatistic> repositoryDsList = dsRepository.findAllByDate(LocalDate.now().minusDays(1));
-            List<DailyStatistic> foreignDsList = foreignDataSource.getCurrentDayWorldStat();
-            if (repositoryDsList == null || repositoryDsList.isEmpty()) {
-                for (DailyStatistic ds : foreignDsList) {
+        if (dsRepository.count() < 1) return;
+
+        LocalDate currentDate = LocalDate.now().minusDays(1);
+        try {
+            List<DailyStatistic> foreignDataList = foreignDataSource.getCurrentDayWorldStat();
+            List<DailyStatistic> repoDataList = dsRepository.findAllByDate(currentDate);
+            if (repoDataList == null || repoDataList.isEmpty()) {
+                for (DailyStatistic ds : foreignDataList) {
                     Country country = countryRepository.findCountryByName(ds.getCountry().getName());
                     if (country != null) {
                         ds.setCountry(country);
@@ -88,29 +89,28 @@ public class ScheduledDataUpdater {
                         log.error("Country not found -> " + ds.getCountry().getName());
                     }
                 }
-                return;
-            }
-            for (int i = 0; i < foreignDsList.size() - 1; i++) {
-                for (int j = 0; j < repositoryDsList.size() - 1; j++) {
-                    DailyStatistic fds = foreignDsList.get(i);
-                    DailyStatistic rds = repositoryDsList.get(j);
-                    if (fds.getCountry().getName().equals(rds.getCountry().getName())) {
-                        if (fds.getDate().isEqual(rds.getDate())) {
-                            if (fds.getCases() != rds.getCases()
-                                    || fds.getRecovered() != rds.getRecovered()
-                                    || fds.getDeaths() != rds.getDeaths()) {
-                                rds.setCases(fds.getCases());
-                                rds.setRecovered(fds.getRecovered());
-                                rds.setDeaths(fds.getDeaths());
-                                updateList.add(j, rds);
-                            }
+            } else {
+                for (DailyStatistic foreignDs : foreignDataList) {
+                    String countryName = foreignDs.getCountry().getName();
+                    Country country = countryRepository.findCountryByName(countryName);
+                    if (country == null) {
+                        country = countryRepository.findCountryByNameLike("%" + countryName + "%");
+                    }
+                    if (country != null) {
+                        DailyStatistic repoDs = dsRepository.findByDateAndCountry(currentDate, country);
+                        if (repoDs == null) {
+                            foreignDs.setCountry(country);
+                            dsRepository.save(foreignDs);
+                        } else {
+                            repoDs.setCases(foreignDs.getCases());
+                            repoDs.setDeaths(foreignDs.getDeaths());
+                            repoDs.setRecovered(foreignDs.getRecovered());
+                            dsRepository.save(repoDs);
                         }
+                    } else {
+                        log.warn("Country not found -> " + countryName);
                     }
                 }
-            }
-            if (!updateList.isEmpty()) {
-                System.out.println("Update data");
-                dsRepository.saveAll(updateList);
             }
         } catch (ResourceNotAvailableException e) {
             log.error("Refresh data error", e);
