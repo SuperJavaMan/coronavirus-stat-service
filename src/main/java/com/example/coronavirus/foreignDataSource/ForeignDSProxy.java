@@ -28,9 +28,6 @@ public class ForeignDSProxy implements ForeignDataSource {
         for (ForeignDataSource dataSource : foreignDataSources) {
             try {
                 dailyStatisticList = dataSource.getCurrentDayWorldStat();
-                if (dailyStatisticList != null && dailyStatisticList.get(0).getCountry().getInterNames() == null) {
-                    setCountryInterNames(dailyStatisticList);
-                }
             } catch (ResourceNotAvailableException e) {
                 log.warn("DS not available", e);
             }
