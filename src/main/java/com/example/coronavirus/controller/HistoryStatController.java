@@ -4,14 +4,20 @@ import com.example.coronavirus.controller.exception.BadRequestException;
 import com.example.coronavirus.controller.exception.DataNotFoundException;
 import com.example.coronavirus.exception.NoDataException;
 import com.example.coronavirus.model.DailyStatistic;
+import com.example.coronavirus.model.DailyStatisticDto;
 import com.example.coronavirus.service.DataProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Oleg Pavlyukov
@@ -31,9 +37,9 @@ public class HistoryStatController {
     }
 
     @GetMapping("/world/{date}")
-    public List<DailyStatistic> getWorldStatByDate(@PathVariable String date) {
+    public List<DailyStatisticDto> getWorldStatByDate(@PathVariable Long date) {
         log.debug("Input date = " + date);
-        LocalDate reqDate = LocalDate.parse(date);
+        LocalDate reqDate = Instant.ofEpochSecond(date).atZone(ZoneId.systemDefault()).toLocalDate();
         if (reqDate.isAfter(LocalDate.now())) {
             String msg = "Invalid date = " + date + ". More then current date.";
             log.debug(msg);
@@ -48,16 +54,18 @@ public class HistoryStatController {
             log.warn(msg, e);
             throw new DataNotFoundException(msg);
         }
-        return worldStatList;
+        return worldStatList.stream()
+                .map(DailyStatisticDto::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/world/{from}/{to}")
-    public List<DailyStatistic> getWorldStatFromToDate(@PathVariable String from,
-                                                                       @PathVariable String to) {
+    public List<DailyStatisticDto> getWorldStatFromToDate(@PathVariable Long from,
+                                                                       @PathVariable Long to) {
         log.debug("Input date range -> " + from + " <-> " + to);
 
-        LocalDate reqFrom = LocalDate.parse(from);
-        LocalDate reqTo = LocalDate.parse(to);
+        LocalDate reqFrom = Instant.ofEpochSecond(from).atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate reqTo = Instant.ofEpochSecond(to).atZone(ZoneId.systemDefault()).toLocalDate();
         if (reqFrom.isAfter(reqTo) || reqTo.isAfter(LocalDate.now())) {
             String msg = "Invalid date range -> " + reqFrom + " <-> " + reqTo;
             log.debug(msg);
@@ -66,21 +74,23 @@ public class HistoryStatController {
 
         List<DailyStatistic> worldStatList;
         try {
-            worldStatList = dataProvider.getWorldStatFromToDate(LocalDate.parse(from), LocalDate.parse(to));
+            worldStatList = dataProvider.getWorldStatFromToDate(reqFrom, reqTo);
         } catch (NoDataException e) {
             String msg = "No worldStat data for range = " + reqFrom + " <-> " + reqTo;
             log.warn(msg, e);
             throw new DataNotFoundException(msg);
         }
-        return worldStatList;
+        return worldStatList.stream()
+                .map(DailyStatisticDto::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/country/{id}/{date}")
-    public DailyStatistic getCountryStatByDate(@PathVariable Long id,
-                                                                     @PathVariable String date) {
+    public DailyStatisticDto getCountryStatByDate(@PathVariable Long id,
+                                                    @PathVariable Long date) {
         log.debug("Input countryId = " + id + ", date = " + date);
 
-        LocalDate reqDate = LocalDate.parse(date);
+        LocalDate reqDate = Instant.ofEpochSecond(date).atZone(ZoneId.systemDefault()).toLocalDate();
         if (reqDate.isAfter(LocalDate.now())) {
             String msg = "Invalid date -> " + reqDate;
             log.debug(msg);
@@ -89,23 +99,23 @@ public class HistoryStatController {
 
         DailyStatistic countryStat;
         try {
-            countryStat = dataProvider.getCountryStatByDate(id, LocalDate.parse(date));
+            countryStat = dataProvider.getCountryStatByDate(id, reqDate);
         } catch (NoDataException e) {
             String msg = "No worldStat data for countryId = " + id + ", date = " + reqDate;
             log.warn(msg, e);
             throw new DataNotFoundException(msg);
         }
-        return countryStat;
+        return DailyStatisticDto.convertToDto(countryStat);
     }
 
     @GetMapping("/country/{id}/{from}/{to}")
-    public List<DailyStatistic> getCountryStatFromToDate(@PathVariable Long id,
-                                                                         @PathVariable String from,
-                                                                         @PathVariable String to) {
+    public List<DailyStatisticDto> getCountryStatFromToDate(@PathVariable Long id,
+                                                                         @PathVariable Long from,
+                                                                         @PathVariable Long to) {
         log.debug("Input countryId = " + id + ", date range -> " + from + " <-> " + to);
 
-        LocalDate reqFrom = LocalDate.parse(from);
-        LocalDate reqTo = LocalDate.parse(to);
+        LocalDate reqFrom = Instant.ofEpochSecond(from).atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate reqTo = Instant.ofEpochSecond(to).atZone(ZoneId.systemDefault()).toLocalDate();
         if (reqFrom.isAfter(reqTo) || reqTo.isAfter(LocalDate.now())) {
             String msg = "Invalid date range = " + reqFrom + " <-> " + reqTo;
             log.debug(msg);
@@ -114,17 +124,19 @@ public class HistoryStatController {
 
         List<DailyStatistic> countryStatList;
         try {
-            countryStatList = dataProvider.getCountryStatFromToDate(id, LocalDate.parse(from), LocalDate.parse(to));
+            countryStatList = dataProvider.getCountryStatFromToDate(id, reqFrom, reqTo);
         } catch (NoDataException e) {
             String msg = "No data for countryId = " + id + ", with date range = " + reqFrom + " <-> " + reqTo;
             log.warn(msg, e);
             throw new DataNotFoundException(msg);
         }
-        return countryStatList;
+        return countryStatList.stream()
+                .map(DailyStatisticDto::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/country/{id}")
-    public List<DailyStatistic> getAllCountryStat(@PathVariable Long id) {
+    public List<DailyStatisticDto> getAllCountryStat(@PathVariable Long id) {
         List<DailyStatistic> countryStatList;
         try {
             countryStatList = dataProvider.getAllCountryStat(id);
@@ -133,11 +145,13 @@ public class HistoryStatController {
             log.warn(msg, e);
             throw new DataNotFoundException(msg);
         }
-        return countryStatList;
+        return countryStatList.stream()
+                .map(DailyStatisticDto::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/global")
-    public DailyStatistic getGlobalStat() {
+    public DailyStatisticDto getGlobalStat() {
         DailyStatistic ds;
         try {
             ds = dataProvider.getGlobalStatistic();
@@ -146,6 +160,6 @@ public class HistoryStatController {
             log.error(msg, e);
             throw new DataNotFoundException(msg);
         }
-        return ds;
+        return DailyStatisticDto.convertToDto(ds);
     }
 }
