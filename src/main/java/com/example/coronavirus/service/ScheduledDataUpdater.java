@@ -54,17 +54,38 @@ public class ScheduledDataUpdater {
         if (recordsCount < 1) {
             try {
                 List<DailyStatistic> freshDataList = foreignDataSource.getStatsByAllCountries();
-                Map<String, List<DailyStatistic>> mapToSave = freshDataList.stream().collect(Collectors.groupingBy(
-                        key-> key.getCountry().getName()));
-                int count = 1;
+                Map<String, List<DailyStatistic>> mapToSave = freshDataList.stream()
+                        .collect(Collectors.groupingBy(
+                            key-> key.getCountry().getName()));
+
                 for (List<DailyStatistic> dailyStatisticList : mapToSave.values()) {
                     dsRepository.saveAll(dailyStatisticList);
                     Thread.sleep(10000);
-                    System.out.println("Country num: " + ++count + ". Time: " + LocalDateTime.now());
                 }
             } catch (ResourceNotAvailableException | InterruptedException e) {
                 log.error("Fatal error during init db. No data available.", e);
                 throw new DataInitException("Fatal error during init db. No data available.", e);
+            }
+        } else {
+            try {
+                List<DailyStatistic> dailyStatisticList = foreignDataSource.getStatsByAllCountries();
+                List<Country> countryList = dailyStatisticList.stream()
+                        .map(DailyStatistic::getCountry)
+                        .distinct()
+                        .collect(Collectors.toList());
+                for (Country fDsCountry : countryList) {
+                    String fdsCountryName = fDsCountry.getName();
+                    Country dbCountry = countryRepository.findCountryByName(fdsCountryName);
+                    if (dbCountry != null) {
+                        dbCountry.setLongitude(fDsCountry.getLongitude());
+                        dbCountry.setLatitude(fDsCountry.getLatitude());
+                        countryRepository.save(dbCountry);
+                    } else {
+                        System.out.println("Country not found -> " + fdsCountryName);
+                    }
+                }
+            } catch (ResourceNotAvailableException e) {
+                e.printStackTrace();
             }
         }
     }

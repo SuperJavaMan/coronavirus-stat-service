@@ -36,8 +36,22 @@ public abstract class AbstractTwoGis implements ForeignDataSource {
                 country.setName("S. Korea");
             } else if (countryDtoName.equalsIgnoreCase("North Macedonia")) {
                 country.setName("Macedonia");
-            }else if (countryDtoName.equalsIgnoreCase("United Arab Emirates")) {
+            } else if (countryDtoName.equalsIgnoreCase("Moldova")) {
+                country.setName("Moldova, Republic of");
+            } else if (countryDtoName.equalsIgnoreCase("United Arab Emirates")) {
                 country.setName("UAE");
+            } else if (countryDtoName.equalsIgnoreCase("Congo (Kinshasa)")) {
+                country.setName("Congo");
+            } else if (countryDtoName.equalsIgnoreCase("Laos")) {
+                country.setName("Lao People\"s Democratic Republic");
+            } else if (countryDtoName.equalsIgnoreCase("Taiwan*")) {
+                country.setName("Taiwan");
+            } else if (countryDtoName.equalsIgnoreCase("Tanzania*")) {
+                country.setName("Tanzania, United Republic of");
+            } else if (countryDtoName.equalsIgnoreCase("Syria*")) {
+                country.setName("Syrian Arab Republic");
+            } else if (countryDtoName.equalsIgnoreCase("Libya*")) {
+                country.setName("Libyan Arab Jamahiriya");
             } else {
                 country.setName(item.getCountryCode());
             }
@@ -49,6 +63,8 @@ public abstract class AbstractTwoGis implements ForeignDataSource {
             interNames.put("uk", item.getI18nCountryNames().getUk());
 
             country.setInterNames(interNames);
+            country.setLongitude(Double.parseDouble(item.getLong()));
+            country.setLatitude(Double.parseDouble(item.getLat()));
 
             DailyStatistic ds = new DailyStatistic();
             ds.setCountry(country);

@@ -83,7 +83,7 @@ public class ForeignDSProxy implements ForeignDataSource {
             String countryName = fDs.getCountry().getName();
             for (DailyStatistic tds : twoGisDSList) {
                 if (tds.getCountry().getName().equalsIgnoreCase(countryName)) {
-                    fDs.getCountry().setInterNames(tds.getCountry().getInterNames());
+                    fDs.setCountry(tds.getCountry());
                 }
             }
         }
