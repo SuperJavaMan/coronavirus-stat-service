@@ -113,8 +113,9 @@ public class ScheduledDataUpdater {
                 }
             }
         } catch (ResourceNotAvailableException e) {
-            log.error("Refresh data error", e);
-            throw new DataInitException("Refresh data error", e);
+            String msg = "Refresh data error";
+            log.error(msg, e);
+            throw new DataInitException(msg, e);
         }
     }
 }
