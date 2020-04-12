@@ -1,11 +1,9 @@
 package com.example.coronavirus.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,13 +17,16 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table( name = "daily_statistic",
+        uniqueConstraints = { @UniqueConstraint( columnNames = { "date", "country_id" } ) } )
 public class DailyStatistic {
     @Id
     @GeneratedValue
     private Long id;
     @Column(columnDefinition = "DATE")
     private LocalDate date;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     @JoinColumn(name = "country_id")
     private Country country;
     private int cases;

@@ -1,7 +1,7 @@
 package com.example.coronavirus.foreignDataSource.lmao;
 
 import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
-import com.example.coronavirus.foreignDataSource.model.johnHopkins.JohnHopkinsDto;
+import com.example.coronavirus.foreignDataSource.lmao.model.johnHopkins.JohnHopkinsDto;
 import com.example.coronavirus.model.DailyStatistic;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ public class JohnHopkinsApiDS extends AbstractJohnHopkinsDS {
     private static final String URL = "https://corona.lmao.ninja/v2/jhucsse";
     @Override
     public List<DailyStatistic> getCurrentDayWorldStat() throws ResourceNotAvailableException {
+        LocalDate jhCurrentDate = LocalDate.now().minusDays(1); // последним днем считается предидущее число
         List<JohnHopkinsDto> johnHopkinsDtoList;
         try {
             johnHopkinsDtoList = Arrays.asList(new ObjectMapper().readValue(Objects.requireNonNull(doRequest().getBody()),
@@ -35,6 +37,7 @@ public class JohnHopkinsApiDS extends AbstractJohnHopkinsDS {
                 .map(this::convertToDailyStatistic)
                 .collect(Collectors.toMap(DailyStatistic::getCountry, dailyStatistic -> dailyStatistic,
                         (oldDailyStat, newDailyStat) -> {
+                            oldDailyStat.setDate(jhCurrentDate);
                             oldDailyStat.setCases(newDailyStat.getCases() + oldDailyStat.getCases());
                             oldDailyStat.setRecovered(newDailyStat.getRecovered() + oldDailyStat.getRecovered());
                             oldDailyStat.setDeaths(newDailyStat.getDeaths() + oldDailyStat.getDeaths());

@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface CountryRepository extends JpaRepository<Country, Long> {
 
     Country findCountryByName(String countryName);
+    Country findCountryByNameLike(String countryName);
 }

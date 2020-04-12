@@ -1,7 +1,7 @@
 package com.example.coronavirus.foreignDataSource.lmao;
 
 import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableException;
-import com.example.coronavirus.foreignDataSource.model.lmao.LmaoDto;
+import com.example.coronavirus.foreignDataSource.lmao.model.lmao.LmaoDto;
 import com.example.coronavirus.model.DailyStatistic;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +31,7 @@ public class LmaoApiDS extends AbstractLmaoDS {
 
     @Override
     public List<DailyStatistic> getStatsByAllCountries() throws ResourceNotAvailableException {
-        String json = doRequest(URL + "/historical").getBody();
+        String json = doRequest(URL + "/historical?lastdays=0").getBody();
         List<LmaoDto> lmaoDtoList;
         try {
             lmaoDtoList = Arrays.asList(new ObjectMapper().readValue(json, LmaoDto[].class));
