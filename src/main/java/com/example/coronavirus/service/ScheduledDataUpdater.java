@@ -66,27 +66,6 @@ public class ScheduledDataUpdater {
                 log.error("Fatal error during init db. No data available.", e);
                 throw new DataInitException("Fatal error during init db. No data available.", e);
             }
-        } else {
-            try {
-                List<DailyStatistic> dailyStatisticList = foreignDataSource.getStatsByAllCountries();
-                List<Country> countryList = dailyStatisticList.stream()
-                        .map(DailyStatistic::getCountry)
-                        .distinct()
-                        .collect(Collectors.toList());
-                for (Country fDsCountry : countryList) {
-                    String fdsCountryName = fDsCountry.getName();
-                    Country dbCountry = countryRepository.findCountryByName(fdsCountryName);
-                    if (dbCountry != null) {
-                        dbCountry.setLongitude(fDsCountry.getLongitude());
-                        dbCountry.setLatitude(fDsCountry.getLatitude());
-                        countryRepository.save(dbCountry);
-                    } else {
-                        System.out.println("Country not found -> " + fdsCountryName);
-                    }
-                }
-            } catch (ResourceNotAvailableException e) {
-                e.printStackTrace();
-            }
         }
     }
 
