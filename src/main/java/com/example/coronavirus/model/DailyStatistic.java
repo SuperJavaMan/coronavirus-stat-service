@@ -32,4 +32,5 @@ public class DailyStatistic {
     private int cases;
     private int deaths;
     private int recovered;
+    private int tested;
 }
