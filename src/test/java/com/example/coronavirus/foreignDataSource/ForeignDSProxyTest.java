@@ -4,6 +4,7 @@ import com.example.coronavirus.foreignDataSource.exception.ResourceNotAvailableE
 import com.example.coronavirus.foreignDataSource.lmao.JohnHopkinsApiDS;
 import com.example.coronavirus.foreignDataSource.lmao.LmaoApiDS;
 import com.example.coronavirus.foreignDataSource.lmao.LmaoJsonDS;
+import com.example.coronavirus.foreignDataSource.rapidApiCovid193.Covid193DS;
 import com.example.coronavirus.model.DailyStatistic;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ForeignDSProxyTest {
     @Test
     void getCurrentDayWorldStat() throws ResourceNotAvailableException {
-        ForeignDataSource[] foreignDataSources = {new LmaoJsonDS(), new LmaoApiDS(), new JohnHopkinsApiDS()};
+        ForeignDataSource[] foreignDataSources = {new Covid193DS(), new LmaoJsonDS(), new LmaoApiDS(), new JohnHopkinsApiDS()};
         ForeignDataSource dataSource = new ForeignDSProxy(foreignDataSources);
 
         List<DailyStatistic> dailyStatisticList = dataSource.getCurrentDayWorldStat();
