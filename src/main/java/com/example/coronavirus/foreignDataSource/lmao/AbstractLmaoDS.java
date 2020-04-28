@@ -20,7 +20,13 @@ public abstract class AbstractLmaoDS implements ForeignDataSource {
 
     protected List<DailyStatistic> convertToDailyStatistic(LmaoDto lmaoDto) {
         Country country = new Country();
-        country.setName(lmaoDto.getCountry());
+        if (lmaoDto.getCountry().equalsIgnoreCase("Moldova")) {
+            country.setName("Moldova, Republic of");
+        } else if (lmaoDto.getCountry().equalsIgnoreCase("Tanzania")) {
+                country.setName("Tanzania, United Republic of");
+        } else {
+            country.setName(lmaoDto.getCountry());
+        }
 
         return lmaoDto.getTimeline().getCases().keySet().stream()
                 .map(key -> {

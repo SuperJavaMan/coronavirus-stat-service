@@ -28,9 +28,10 @@ public interface DailyStatRepository extends JpaRepository<DailyStatistic, Long>
             "       null as country_id,\n" +
             "       sum(cases) as cases,\n" +
             "       sum(deaths) as deaths,\n" +
-            "       sum(recovered) as recovered\n" +
+            "       sum(recovered) as recovered,\n" +
+            "       sum(tested) as tested\n" +
             "from daily_statistic\n" +
-            "where date = current_date()",
+            "where (SELECT MAX(date) from daily_statistic) = date",
     nativeQuery = true)
     DailyStatistic getGlobalStatistic();
 

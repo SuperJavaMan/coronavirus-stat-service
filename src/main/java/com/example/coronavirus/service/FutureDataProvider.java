@@ -31,6 +31,7 @@ public class FutureDataProvider {
         List<DailyStatistic> templateList = dataProvider.getCountryStatFromToDate(countryId,
                                                     LocalDate.now().minusDays(5),
                                                     LocalDate.now());
+
         FormulaStrategy formulaStrategy = new BaseFormula(templateList);
         return formulaStrategy.getForecast(daysCount);
     }

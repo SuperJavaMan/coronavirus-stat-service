@@ -54,13 +54,13 @@ public class ScheduledDataUpdater {
         if (recordsCount < 1) {
             try {
                 List<DailyStatistic> freshDataList = foreignDataSource.getStatsByAllCountries();
-                Map<String, List<DailyStatistic>> mapToSave = freshDataList.stream().collect(Collectors.groupingBy(
-                        key-> key.getCountry().getName()));
-                int count = 1;
+                Map<String, List<DailyStatistic>> mapToSave = freshDataList.stream()
+                        .collect(Collectors.groupingBy(
+                            key-> key.getCountry().getName()));
+
                 for (List<DailyStatistic> dailyStatisticList : mapToSave.values()) {
                     dsRepository.saveAll(dailyStatisticList);
                     Thread.sleep(10000);
-                    System.out.println("Country num: " + ++count + ". Time: " + LocalDateTime.now());
                 }
             } catch (ResourceNotAvailableException | InterruptedException e) {
                 log.error("Fatal error during init db. No data available.", e);
@@ -70,12 +70,12 @@ public class ScheduledDataUpdater {
     }
 
     @Scheduled(fixedRateString = "${app.schedule.rate}")
-    private void refreshCurrentDayData1() {
+    private void refreshCurrentDayData() {
         log.info("Refreshing data at " + LocalDateTime.now());
 
         if (dsRepository.count() < 1) return;
 
-        LocalDate currentDate = LocalDate.now().minusDays(1);
+        LocalDate currentDate = LocalDate.now();
         try {
             List<DailyStatistic> foreignDataList = foreignDataSource.getCurrentDayWorldStat();
             List<DailyStatistic> repoDataList = dsRepository.findAllByDate(currentDate);
@@ -93,9 +93,7 @@ public class ScheduledDataUpdater {
                 for (DailyStatistic foreignDs : foreignDataList) {
                     String countryName = foreignDs.getCountry().getName();
                     Country country = countryRepository.findCountryByName(countryName);
-                    if (country == null) {
-                        country = countryRepository.findCountryByNameLike("%" + countryName + "%");
-                    }
+
                     if (country != null) {
                         DailyStatistic repoDs = dsRepository.findByDateAndCountry(currentDate, country);
                         if (repoDs == null) {

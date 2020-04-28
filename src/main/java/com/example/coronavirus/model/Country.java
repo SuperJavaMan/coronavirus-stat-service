@@ -28,6 +28,8 @@ public class Country {
     @MapKeyColumn(name = "lang")
     @Column(name = "value")
     private Map<String, String> interNames;
+    private double longitude;
+    private double latitude;
 
     public Country(Long id, String name) {
         this.id = id;

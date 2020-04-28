@@ -24,6 +24,7 @@ public class DailyStatisticDto {
     private int cases;
     private int deaths;
     private int recovered;
+    private int tested;
 
     public LocalDate retrieveDateInLocalDate() {
         return Instant.ofEpochSecond(this.date).atZone(ZoneId.systemDefault()).toLocalDate();
@@ -41,6 +42,7 @@ public class DailyStatisticDto {
         ds.setCases(dto.getCases());
         ds.setRecovered(dto.getRecovered());
         ds.setDeaths(dto.getDeaths());
+        ds.setTested(dto.getTested());
         return ds;
     }
 
@@ -52,6 +54,7 @@ public class DailyStatisticDto {
         dto.setCases(ds.getCases());
         dto.setRecovered(ds.getRecovered());
         dto.setDeaths(ds.getDeaths());
+        dto.setTested(ds.getTested());
         return dto;
     }
 }
