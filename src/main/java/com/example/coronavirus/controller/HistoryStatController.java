@@ -8,10 +8,7 @@ import com.example.coronavirus.model.DailyStatisticDto;
 import com.example.coronavirus.service.DataProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -24,6 +21,7 @@ import java.util.stream.Collectors;
  * on 01.04.2020
  * cpabox777@gmail.com
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/history")
 @Slf4j
