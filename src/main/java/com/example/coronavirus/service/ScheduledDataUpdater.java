@@ -103,6 +103,7 @@ public class ScheduledDataUpdater {
                             repoDs.setCases(foreignDs.getCases());
                             repoDs.setDeaths(foreignDs.getDeaths());
                             repoDs.setRecovered(foreignDs.getRecovered());
+                            repoDs.setTested(foreignDs.getTested());
                             dsRepository.save(repoDs);
                         }
                     } else {
