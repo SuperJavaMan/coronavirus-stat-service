@@ -9,8 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class Covid193DS extends AbstractCovid193 {
@@ -37,7 +39,13 @@ public class Covid193DS extends AbstractCovid193 {
             log.error(msg, e);
             throw new ResourceNotAvailableException(msg, e);
         }
-        return convertToDailyStatistic(covid193DSDto);
+        // некоторые страны не обновляли статистику долгое время.
+        // Чтобы предотвратить конфликты при сохранении,
+        // сеттим текущую дату вместо даты последнего обновления,
+        // как последние данные на текущий момент времени
+        return convertToDailyStatistic(covid193DSDto).stream()
+                .peek(ds -> ds.setDate(LocalDate.now()))
+                .collect(Collectors.toList());
     }
 
     @Override
